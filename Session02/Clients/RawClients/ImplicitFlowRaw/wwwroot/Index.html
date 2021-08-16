@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script>
+        function page_load() {
+            if (window.location.hash) {
+                var hash = window.location.hash.substring(1);
+                document.getElementById("result").innerHTML = hash;
+            }
+
+        }
+
+        function redirectToSts() {
+            var url = "https://localhost:5001/connect/authorize?" +
+                "response_type=token" +
+                "&client_id=js-implicit-raw" +
+                "&redirect_uri=https://localhost:5057/" +
+                "&scope=read-diaries";
+
+            window.location.replace(url);
+        }
+    </script>
+</head>
+<body onload="page_load()">
+    
+    <button onclick="redirectToSts()"> Redirect to Authorization Server </button>
+    
+
+    <div id="result">
+
+    </div>
+</body>
+</html>
