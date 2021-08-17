@@ -3,30 +3,48 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <script src="lib/jquery/dist/jquery.js"></script>
 
-    <script>
-        function page_load() {
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#redirectButton").click(function () {
+                var url = "https://localhost:5001/connect/authorize?" +
+                    "response_type=token" +
+                    "&client_id=js-implicit-raw" +
+                    "&redirect_uri=https://localhost:5057/" +
+                    "&scope=read-diaries";
+                window.location.replace(url);
+            });
+            debugger;
             if (window.location.hash) {
-                var hash = window.location.hash.substring(1);
-                document.getElementById("result").innerHTML = hash;
+                var hash = window.location.hash.substring(1).split("&");
+                var tokenResponse = {};
+                for (var i = 0; i < hash.length; i++) {
+                    var splitted = hash[i].split("=");
+                    tokenResponse[splitted[0]] = splitted[1];
+                }
+                var token = `${tokenResponse["token_type"]} ${tokenResponse["access_token"]}`;
+
+                $.ajax({
+                    url: "https://localhost:5005/api/diaries",
+                    type: 'GET',
+                    headers: { "Authorization": token },
+                    success: function (res) {
+                        debugger;
+                        $("#result").html(JSON.stringify(res));
+                    }
+                });
             }
+        });
 
-        }
+       
 
-        function redirectToSts() {
-            var url = "https://localhost:5001/connect/authorize?" +
-                "response_type=token" +
-                "&client_id=js-implicit-raw" +
-                "&redirect_uri=https://localhost:5057/" +
-                "&scope=read-diaries";
-
-            window.location.replace(url);
-        }
     </script>
 </head>
-<body onload="page_load()">
+<body>
     
-    <button onclick="redirectToSts()"> Redirect to Authorization Server </button>
+    <button id="redirectButton"> Redirect to Authorization Server </button>
     
 
     <div id="result">

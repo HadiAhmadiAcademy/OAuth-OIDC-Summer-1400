@@ -48,6 +48,15 @@ namespace Diaries
                     policy.RequireClaim("scope", "read-diaries");
                 });
             });
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder => 
+                    builder.WithOrigins("https://localhost:5057")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+            });
+
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -61,6 +70,8 @@ namespace Diaries
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();
