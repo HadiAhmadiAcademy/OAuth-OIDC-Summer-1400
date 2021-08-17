@@ -19,13 +19,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrameworkClients", "Framewo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFlowFramework", "Clients\FrameworkClients\CodeFlowFramework\CodeFlowFramework.csproj", "{FC898A0F-41B3-4691-8678-C5205F67F4FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFlowRaw", "Clients\RawClients\CodeFlowRaw\CodeFlowRaw.csproj", "{80C40AF4-DA80-4785-8F04-D02F21167F59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFlowRaw", "Clients\RawClients\CodeFlowRaw\CodeFlowRaw.csproj", "{80C40AF4-DA80-4785-8F04-D02F21167F59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RopcFlowRaw", "Clients\RawClients\RopcFlowRaw\RopcFlowRaw.csproj", "{992D9196-C1F0-4161-88C7-00045EB1590F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RopcFlowRaw", "Clients\RawClients\RopcFlowRaw\RopcFlowRaw.csproj", "{992D9196-C1F0-4161-88C7-00045EB1590F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientCredentialsFlowRaw", "Clients\RawClients\ClientCredentialsFlowRaw\ClientCredentialsFlowRaw.csproj", "{8D769F37-1D96-4616-94D9-D0B436F32E0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientCredentialsFlowRaw", "Clients\RawClients\ClientCredentialsFlowRaw\ClientCredentialsFlowRaw.csproj", "{8D769F37-1D96-4616-94D9-D0B436F32E0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImplicitFlowRaw", "Clients\RawClients\ImplicitFlowRaw\ImplicitFlowRaw.csproj", "{53B86AFC-B206-4F2D-AE0A-7AE9A766796E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImplicitFlowRaw", "Clients\RawClients\ImplicitFlowRaw\ImplicitFlowRaw.csproj", "{53B86AFC-B206-4F2D-AE0A-7AE9A766796E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wso2Demo", "Clients\RawClients\Wso2Demo\Wso2Demo.csproj", "{FFE3F59E-BFF8-4752-A6E3-13F591D236F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{53B86AFC-B206-4F2D-AE0A-7AE9A766796E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53B86AFC-B206-4F2D-AE0A-7AE9A766796E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53B86AFC-B206-4F2D-AE0A-7AE9A766796E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFE3F59E-BFF8-4752-A6E3-13F591D236F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFE3F59E-BFF8-4752-A6E3-13F591D236F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFE3F59E-BFF8-4752-A6E3-13F591D236F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFE3F59E-BFF8-4752-A6E3-13F591D236F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +81,7 @@ Global
 		{992D9196-C1F0-4161-88C7-00045EB1590F} = {CD840C83-67C4-44BE-B400-85586F84C2DD}
 		{8D769F37-1D96-4616-94D9-D0B436F32E0B} = {CD840C83-67C4-44BE-B400-85586F84C2DD}
 		{53B86AFC-B206-4F2D-AE0A-7AE9A766796E} = {CD840C83-67C4-44BE-B400-85586F84C2DD}
+		{FFE3F59E-BFF8-4752-A6E3-13F591D236F0} = {CD840C83-67C4-44BE-B400-85586F84C2DD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A19B2F96-89E3-4A59-9862-44422D7B5780}
