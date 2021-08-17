@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using RestSharp;
@@ -34,15 +35,19 @@ namespace ClientCredentialsFlowRaw
         {
             var requestBody = new StringBuilder()
                 .Append("grant_type=client_credentials")
-                .Append("&client_id=console-client-credentials-raw")
-                .Append("&client_secret=console-client-credentials-raw-secret")
+                //.Append("&client_id=console-client-credentials-raw")
+                //.Append("&client_secret=console-client-credentials-raw-secret")
                 .Append("&scope=read-diaries")
                 .ToString();
+
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes("console-client-credentials-raw:console-client-credentials-raw-secret");
+            var clientPasswordBase64 = System.Convert.ToBase64String(plainTextBytes);
 
             var client = new RestClient($"https://localhost:5001/connect/token");
             client.UseNewtonsoftJson();
             var request = new RestRequest(Method.POST);
             request.AddHeader("content-type", "application/x-www-form-urlencoded");
+            request.AddHeader("authorization", $"Basic {clientPasswordBase64}");
             request.AddParameter("application/x-www-form-urlencoded", requestBody, ParameterType.RequestBody);
             var response = await client.ExecuteAsync<TokenResponse>(request);
             return response.Data;
