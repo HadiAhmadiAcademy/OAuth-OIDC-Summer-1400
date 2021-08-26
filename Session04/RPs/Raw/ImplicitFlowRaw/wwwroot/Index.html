@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="lib/jquery/dist/jquery.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#redirectButton").click(function () {
+                var url = "https://localhost:5001/connect/authorize?" +
+                    "response_type=id_token token" +
+                    "&client_id=js-implicit-raw" +
+                    "&redirect_uri=https://localhost:5057/" +
+                    "&scope=openid profile" +
+                    "&nonce=oidoasd"
+                    ;
+                window.location.replace(url);
+            });
+
+            if (window.location.hash) {
+                var hash = window.location.hash.substring(1).split("&");
+                for (var i = 0; i < hash.length; i++) {
+                    var splitted = hash[i].split("=");
+                    var div = document.getElementById('result');
+                    div.innerHTML += `<div>${splitted[0]} = ${splitted[1]}</div><br/>`;
+                }
+            }
+        });
+
+       
+
+    </script>
+</head>
+<body>
+    
+    <button id="redirectButton"> Redirect to Authorization Server </button>
+    
+
+    <div id="result">
+
+    </div>
+</body>
+</html>

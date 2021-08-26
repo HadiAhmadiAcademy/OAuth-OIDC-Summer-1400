@@ -1,0 +1,48 @@
+﻿@model LoginCallbackViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+
+<div>Subject : @Model.UserInfo.Subject</div>
+<div>Name : @Model.UserInfo.Name</div>
+<div>Given Name : @Model.UserInfo.GivenName</div>
+<div>Family Name : @Model.UserInfo.FamilyName</div>
+<div>Website : @Model.UserInfo.Website</div>
+
+<br/>
+
+<div style="margin-bottom: 20px">
+    <span>Access Token : </span>
+    <div>
+        @Model.Token.AccessToken
+    </div>
+</div>
+<div style="margin-bottom: 20px">
+        <span>Id Token : </span>
+        <div>
+            @Model.Token.IdToken
+        </div>
+    </div>
+<div style="margin-bottom: 20px">
+    <span>Token Type : </span>
+    <div>
+        @Model.Token.TokenType
+    </div>
+</div>
+<div style="margin-bottom: 20px">
+    <span>Refresh Token : </span>
+    <div>
+        @Model.Token.RefreshToken
+    </div>
+</div>
+<div style="margin-bottom: 20px">
+    <span>Expires In : </span>
+    <div>
+        @Model.Token.ExpiresIn
+    </div>
+</div>
