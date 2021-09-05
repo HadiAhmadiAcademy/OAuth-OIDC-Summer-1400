@@ -10,11 +10,11 @@
         $(document).ready(function () {
             $("#redirectButton").click(function () {
                 var url = "https://localhost:5001/connect/authorize?" +
-                    "response_type=id_token token" +
-                    "&client_id=js-implicit-raw" +
+                    "response_type=code token" +
+                    "&client_id=hybrid-client" +
                     "&redirect_uri=https://localhost:5057/" +
                     "&scope=openid profile" +
-                    "&nonce=oidoasd"
+                    "&nonce=asdasdasdasdzxczxczxczxc"
                     ;
                 window.location.replace(url);
             });

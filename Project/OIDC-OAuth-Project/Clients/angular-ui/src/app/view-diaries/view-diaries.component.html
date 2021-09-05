@@ -1,0 +1,7 @@
+
+<h2>Diaries of {{user.profile.name}}</h2>
+
+
+<div *ngFor="let entry of diaries | async">
+    {{ entry | json }}
+</div>

@@ -77,7 +77,22 @@ namespace STS
                     AllowAccessTokensViaBrowser = true,
                     AlwaysIncludeUserClaimsInIdToken = true,
                 },
-
+                new Client
+                {
+                    ClientId = "hybrid-client",
+                    RequireClientSecret = false,
+                    AllowedGrantTypes = GrantTypes.Hybrid,
+                    RedirectUris = { "https://localhost:5057/" },
+                    AllowedScopes = new List<string>()
+                    {
+                        "openid",
+                        "profile"
+                    },
+                    RequirePkce = false,
+                    RequireConsent = true,
+                    AllowAccessTokensViaBrowser = true,
+                    AlwaysIncludeUserClaimsInIdToken = true,
+                },
             };
     }
 }
