@@ -28,13 +28,17 @@ namespace STS
                 {
                     ClientId = "diaries-front",
                     RequireClientSecret = false,    
-                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowedGrantTypes = GrantTypes.Code,
                     RedirectUris = { "http://localhost:4200/auth-callback" },
                     AllowOfflineAccess = false,
                     AllowedScopes = { "openid", "profile" },
                     RequireConsent = true,
                     AllowAccessTokensViaBrowser = true,
-                    AllowedCorsOrigins = new List<string>() { "http://localhost:4200"},
+                    RequirePkce = true,
+                    AllowedCorsOrigins = new List<string>()
+                    {
+                        "http://localhost:4200",
+                    },
                 },
             };
     }

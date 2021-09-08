@@ -40,7 +40,7 @@ export class AuthService {
       authority: 'https://localhost:5001/',
       client_id: 'diaries-front',
       redirect_uri: 'http://localhost:4200/auth-callback',
-      response_type: "id_token token",  //TODO: update this to use code flow + PKCE
+      response_type: "code", 
       scope: "openid profile",
     };
   }
