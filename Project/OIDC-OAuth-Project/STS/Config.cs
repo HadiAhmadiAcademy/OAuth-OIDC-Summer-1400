@@ -4,6 +4,8 @@
 
 using IdentityServer4.Models;
 using System.Collections.Generic;
+using IdentityModel;
+using IdentityServer4;
 
 namespace STS
 {
@@ -31,14 +33,33 @@ namespace STS
                     AllowedGrantTypes = GrantTypes.Code,
                     RedirectUris = { "http://localhost:4200/auth-callback" },
                     AllowOfflineAccess = false,
-                    AllowedScopes = { "openid", "profile" },
-                    RequireConsent = true,
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile
+                    },
+                    RequireConsent = false,
                     AllowAccessTokensViaBrowser = true,
                     RequirePkce = true,
                     AllowedCorsOrigins = new List<string>()
                     {
                         "http://localhost:4200",
                     },
+                },
+                new Client
+                {
+                    ClientId = "todo-app",
+                    RequireClientSecret = true,
+                    ClientSecrets =  { new Secret("secret".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RedirectUris = { "https://localhost:5007/signin-oidc" },
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile
+                    },
+                    RequireConsent = false,
+                    RequirePkce = true,
                 },
             };
     }
