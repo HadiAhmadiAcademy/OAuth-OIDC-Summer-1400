@@ -30,7 +30,7 @@ namespace STS
                     },
                     Scopes = new List<string>()
                     {
-                        //"read-diaries"
+                        "read-diaries"
                     }
                 }, 
             };

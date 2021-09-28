@@ -10,7 +10,11 @@ export class AuthService {
   private userManager = new UserManager(this.getSettings());
   private user: User;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+    this.userManager.events.addAccessTokenExpiring(function(){
+      console.log("token expiring..." + Date.now());
+    });
+  }
 
   public redirectToSts(state: string) {
     var redirectConfig = {
@@ -21,7 +25,6 @@ export class AuthService {
 
   redirectCallback() {
     this.userManager.signinRedirectCallback().then(user=>{
-        debugger;
         this.user = user;
         this.router.navigate([user.state]);
     })
@@ -42,6 +45,8 @@ export class AuthService {
       redirect_uri: 'http://localhost:4200/auth-callback',
       response_type: "code", 
       scope: "openid profile",
+      automaticSilentRenew: true,
+      silent_redirect_uri: "http://localhost:4200/assets/silent-refresh.html"
     };
   }
 }

@@ -16,7 +16,6 @@ export class DiariesService {
         var httpOptions = {
             headers: new HttpHeaders({ Authorization: `${user.token_type} ${user.access_token}` })
         };
-        debugger;
         return this.httpClient
             .get<Array<DiaryEntry>>("https://localhost:5005/api/diaries/all", httpOptions);
     }

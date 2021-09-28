@@ -31,7 +31,11 @@ namespace STS
                     ClientId = "diaries-front",
                     RequireClientSecret = false,    
                     AllowedGrantTypes = GrantTypes.Code,
-                    RedirectUris = { "http://localhost:4200/auth-callback" },
+                    RedirectUris =
+                    {
+                        "http://localhost:4200/auth-callback",
+                        "http://localhost:4200/assets/silent-refresh.html"
+                    },
                     AllowOfflineAccess = false,
                     AllowedScopes =
                     {
@@ -39,6 +43,7 @@ namespace STS
                         IdentityServerConstants.StandardScopes.Profile
                     },
                     RequireConsent = false,
+                    AccessTokenLifetime = 63,
                     AllowAccessTokensViaBrowser = true,
                     RequirePkce = true,
                     AllowedCorsOrigins = new List<string>()
