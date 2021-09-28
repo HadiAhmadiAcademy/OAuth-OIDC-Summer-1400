@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STS", "STS\STS.csproj", "{6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diaries", "ResourceServers\Diaries\Diaries.csproj", "{FA3D14FE-B98F-42F9-8F35-D1943ACEA7B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApp", "Clients\TodoApp\TodoApp.csproj", "{CA86BEF5-B8CF-476D-BE94-842E69AFD35A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApp", "Clients\TodoApp\TodoApp.csproj", "{CA86BEF5-B8CF-476D-BE94-842E69AFD35A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
