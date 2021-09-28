@@ -23,10 +23,12 @@ namespace RopcFlowRaw
             Console.WriteLine(token.AccessToken);
 
             Console.WriteLine("---------------------------");
-            Console.WriteLine("Press any key to revoke the token");
-            Console.ReadLine();
-            var response = TokenRevocationService.Revoke(token.AccessToken);
-            Console.WriteLine(response);
+            var shouldRevoke = AnsiConsole.Confirm("Do you want to revoke the token?");
+            if (shouldRevoke)
+            {
+                var response = TokenRevocationService.Revoke(token.AccessToken);
+                Console.WriteLine($"Response Code : {response}");
+            }
 
             Console.WriteLine("---------------------------");
             Console.WriteLine("Press any key call api with token...");

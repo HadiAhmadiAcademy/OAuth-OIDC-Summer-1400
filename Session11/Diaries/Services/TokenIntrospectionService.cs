@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using RestSharp;
 using RestSharp.Serializers.NewtonsoftJson;
@@ -7,7 +8,7 @@ namespace Diaries.Services
 {
     public class TokenIntrospectionService
     {
-        public static async Task<string> Introspect(string accessToken)
+        public static async Task<HttpStatusCode> Introspect(string accessToken)
         {
             var requestBody = $"token={accessToken}";
             var client = new RestClient("https://localhost:5001/connect/introspect");
@@ -15,8 +16,8 @@ namespace Diaries.Services
             var authorizationHeader = ToBase64("diaries-api:diaries-api-secret");
             request.AddHeader("Authorization", $"Basic {authorizationHeader}");
             request.AddParameter("application/x-www-form-urlencoded", requestBody, ParameterType.RequestBody);
-            var result = client.Execute<dynamic>(request);
-            return "";
+            var result = await client.ExecuteAsync<dynamic>(request);
+            return result.StatusCode;
         }
         private static string ToBase64(string value)
         {
