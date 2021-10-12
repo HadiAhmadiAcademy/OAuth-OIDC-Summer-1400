@@ -5,10 +5,12 @@
 using IdentityServer4;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using STS.Controllers;
+using STS.SeedData;
 
 namespace STS
 {
@@ -34,12 +36,21 @@ namespace STS
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
                 options.EmitStaticAudienceClaim = true;
-            })
-                .AddTestUsers(TestUsers.Users);
+            });
+            
+            var connectionString = Configuration.GetConnectionString("STS_DB");
+            builder.AddConfigurationStore(options =>
+                {
+                    options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                        sql => sql.MigrationsAssembly(typeof(Config).Assembly.GetName().Name));
+                })
+                .AddOperationalStore(options =>
+                {
+                    options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
+                        sql => sql.MigrationsAssembly(typeof(Config).Assembly.GetName().Name));
+                });
+            builder.AddTestUsers(TestUsers.Users);
 
-            builder.AddInMemoryIdentityResources(Config.IdentityResources);
-            builder.AddInMemoryApiScopes(Config.ApiScopes);
-            builder.AddInMemoryClients(Config.Clients);
 
             builder.AddDeveloperSigningCredential();
 
@@ -51,6 +62,7 @@ namespace STS
             if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.InitializeSeedData();
             }
 
             app.UseStaticFiles();
