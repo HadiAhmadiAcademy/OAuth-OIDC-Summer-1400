@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STS", "STS\STS.csproj", "{EE5B93A5-DDFA-44BA-B0D0-5755B9E27398}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ResourceServer", "ResourceServer", "{6ABD3D34-95D9-463D-A7C9-76A5BBAA5275}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdP", "IdP", "{85E54770-EF25-415A-B194-1283578E8F1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{FC1364FC-5048-4D20-9B1D-62BCE6AB9922}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diaries", "Diaries\Diaries.csproj", "{EA80E52E-ED32-4CF1-876B-6BC29BBF17F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RawClients", "RawClients", "{3D6543DB-9282-4457-94DD-BA104F0B6D7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTV", "Clients\RawClients\SmartTV\SmartTV.csproj", "{4AB2A127-6400-452C-B8C4-18129CF6BA96}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE5B93A5-DDFA-44BA-B0D0-5755B9E27398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE5B93A5-DDFA-44BA-B0D0-5755B9E27398}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE5B93A5-DDFA-44BA-B0D0-5755B9E27398}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE5B93A5-DDFA-44BA-B0D0-5755B9E27398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA80E52E-ED32-4CF1-876B-6BC29BBF17F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA80E52E-ED32-4CF1-876B-6BC29BBF17F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA80E52E-ED32-4CF1-876B-6BC29BBF17F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA80E52E-ED32-4CF1-876B-6BC29BBF17F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AB2A127-6400-452C-B8C4-18129CF6BA96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AB2A127-6400-452C-B8C4-18129CF6BA96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AB2A127-6400-452C-B8C4-18129CF6BA96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AB2A127-6400-452C-B8C4-18129CF6BA96}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE5B93A5-DDFA-44BA-B0D0-5755B9E27398} = {85E54770-EF25-415A-B194-1283578E8F1F}
+		{EA80E52E-ED32-4CF1-876B-6BC29BBF17F4} = {6ABD3D34-95D9-463D-A7C9-76A5BBAA5275}
+		{3D6543DB-9282-4457-94DD-BA104F0B6D7F} = {FC1364FC-5048-4D20-9B1D-62BCE6AB9922}
+		{4AB2A127-6400-452C-B8C4-18129CF6BA96} = {3D6543DB-9282-4457-94DD-BA104F0B6D7F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A19B2F96-89E3-4A59-9862-44422D7B5780}
+	EndGlobalSection
+EndGlobal
