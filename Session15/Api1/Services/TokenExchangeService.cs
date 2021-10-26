@@ -1,25 +1,27 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
-using OriginalClient.Model;
+using Api1.Model;
 using RestSharp;
 using RestSharp.Serializers.NewtonsoftJson;
 
-namespace OriginalClient.Services
+namespace Api1.Services
 {
-    public class RopcService
+    public static class TokenExchangeService
     {
-        public static async Task<TokenResponse> GetToken(string username, string password)
+        public static async Task<TokenResponse> Exchange(string token)
         {
             var requestBody = new StringBuilder()
-                .Append("grant_type=password")
-                .Append($"&username={username}")
-                .Append($"&password={password}")
-                .Append("&scope=forecasts")
+                .Append("grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange")
+                .Append($"&subject_token={token}")
+                .Append($"&scope=locations")
+                .Append($"&subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Aaccess_token")
                 .ToString();
-            var clientAuthentication = ToBase64("original-client:original-client-secret");
 
             var client = new RestClient($"https://localhost:5001/connect/token");
             client.UseNewtonsoftJson();
+            var clientAuthentication = ToBase64("api1:api1-secret");
+
             var request = new RestRequest(Method.POST);
             request.AddHeader("Authorization", $"Basic {clientAuthentication}");
             request.AddHeader("content-type", "application/x-www-form-urlencoded");

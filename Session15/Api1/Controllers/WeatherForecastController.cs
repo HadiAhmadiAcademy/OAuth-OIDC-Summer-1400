@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Api1.Services;
 using FizzWare.NBuilder;
 
 namespace Api1.Controllers
@@ -13,9 +14,18 @@ namespace Api1.Controllers
     public class WeatherForecastController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IEnumerable<WeatherForecast>> Get()
         {
-            throw new NotImplementedException();
+            var token = ReadTokenFromHeader();
+            var newToken = await TokenExchangeService.Exchange(token);
+
+            return null;
+        }
+
+        private string ReadTokenFromHeader()
+        {
+            var header = Request.Headers["Authorization"];
+            return header.ToString().Split(" ")[1];
         }
     }
 }

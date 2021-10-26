@@ -22,23 +22,35 @@ namespace STS
         public static IEnumerable<ApiResource> ApiResources =>
             new ApiResource[]
             {
-                new ApiResource("diaries-api")
+                new ApiResource("api1")
                 {
                     ApiSecrets = new List<Secret>()
                     {
-                        new Secret("diaries-api-secret".Sha256())
+                        new Secret("api1-secret".Sha256())
                     },
                     Scopes = new List<string>()
                     {
-                        "read-diaries"
+                        "forecasts"
                     }
-                }, 
+                },
+                new ApiResource("api2")
+                {
+                    ApiSecrets = new List<Secret>()
+                    {
+                        new Secret("api2-secret".Sha256())
+                    },
+                    Scopes = new List<string>()
+                    {
+                        "locations"
+                    }
+                },
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
-                new ApiScope("read-diaries"), 
+                new ApiScope("forecasts"), 
+                new ApiScope("locations"), 
             };
 
         public static IEnumerable<Client> Clients =>
@@ -59,7 +71,26 @@ namespace STS
                     AccessTokenType = AccessTokenType.Jwt,
                     AllowedScopes = new List<string>
                     {
-                        "read-diaries"
+                        "forecasts"
+                    },
+                },
+
+                new Client()
+                {
+                    Enabled = true,
+                    ClientId = "api1",
+                    ClientSecrets = new List<Secret>()
+                    {
+                        new Secret("api1-secret".Sha256())
+                    },
+                    RequireClientSecret = true,
+                    AllowedGrantTypes = new[] {"urn:ietf:params:oauth:grant-type:token-exchange"},
+                    RequirePkce = false,
+                    AllowOfflineAccess = true,
+                    AccessTokenType = AccessTokenType.Jwt,
+                    AllowedScopes = new List<string>
+                    {
+                        "locations"
                     },
                 },
             };

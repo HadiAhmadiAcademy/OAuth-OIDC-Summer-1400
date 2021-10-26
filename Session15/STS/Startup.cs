@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Rsk.TokenExchange.IdentityServer4;
 using STS.Controllers;
 
 namespace STS
@@ -37,6 +38,7 @@ namespace STS
                 // see https://identityserver4.readthedocs.io/en/latest/topics/resources.html
                 options.EmitStaticAudienceClaim = true;
             })
+                .AddTokenExchange()
                 .AddTestUsers(TestUsers.Users);
 
             // in-memory, code config

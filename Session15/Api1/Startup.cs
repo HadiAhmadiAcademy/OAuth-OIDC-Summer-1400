@@ -33,10 +33,7 @@ namespace Api1
                 .AddJwtBearer("Bearer", options =>
                 {
                     options.Authority = "https://localhost:5001";
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateAudience = false
-                    };
+                    options.Audience = "api1";
                 });
             services.AddAuthorization();
         }
