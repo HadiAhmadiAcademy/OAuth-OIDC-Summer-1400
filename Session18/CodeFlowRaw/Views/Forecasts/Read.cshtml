@@ -1,0 +1,28 @@
+﻿@model List<CodeFlowRaw.Models.WeatherForecast>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Date</th>
+            <th scope="col">Text</th>
+            <th scope="col">View</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    @foreach (var entry in Model)
+    {
+        <tr>
+            <td>@entry.City</td>
+            <td>@(entry.Date.ToShortDateString())</td>
+            <td>@(entry.Temperature)</td>
+        </tr>
+    }
+    </tbody>
+</table>
