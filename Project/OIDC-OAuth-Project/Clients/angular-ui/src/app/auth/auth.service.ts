@@ -14,6 +14,10 @@ export class AuthService {
     this.userManager.events.addAccessTokenExpiring(function(){
       console.log("token expiring..." + Date.now());
     });
+
+    this.userManager.events.addUserSignedOut(function() {
+      console.log("user signed out !");
+    });
   }
 
   public redirectToSts(state: string) {
