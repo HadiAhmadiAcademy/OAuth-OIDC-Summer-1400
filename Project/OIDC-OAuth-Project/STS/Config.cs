@@ -43,7 +43,7 @@ namespace STS
                         IdentityServerConstants.StandardScopes.Profile
                     },
                     RequireConsent = false,
-                    AccessTokenLifetime = 63,
+                    AccessTokenLifetime = 3600,
                     AllowAccessTokensViaBrowser = true,
                     RequirePkce = true,
                     AllowedCorsOrigins = new List<string>()
