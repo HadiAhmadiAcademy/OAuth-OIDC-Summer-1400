@@ -20,6 +20,10 @@ export class AuthService {
     });
   }
 
+  public signout() {
+    this.userManager.signoutRedirect();
+  }
+
   public redirectToSts(state: string) {
     var redirectConfig = {
       state: state

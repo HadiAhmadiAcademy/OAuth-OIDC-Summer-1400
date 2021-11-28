@@ -38,6 +38,7 @@ namespace TodoApp
                     options.ResponseType = "code";
                     options.SaveTokens = true;
                     options.UsePkce = true;
+                    options.SignedOutCallbackPath = "/Account/PostLogoutCallback";
                 });
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
