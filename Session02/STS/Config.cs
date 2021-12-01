@@ -16,9 +16,10 @@ namespace STS
             new IdentityResource[]
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
+                new IdentityResources.Profile() ,
             };
 
+//test
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
