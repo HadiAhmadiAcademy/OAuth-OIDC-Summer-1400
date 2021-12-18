@@ -35,10 +35,12 @@ namespace Diaries
                 .AddJwtBearer("Bearer", options =>
                 {
                     options.Authority = "https://localhost:5001";
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateAudience = false
-                    };
+
+                    // Don't try this at home
+                    //options.TokenValidationParameters = new TokenValidationParameters
+                    //{
+                    //    ValidateAudience = false
+                    //};
                 });
             services.AddAuthorization();
 

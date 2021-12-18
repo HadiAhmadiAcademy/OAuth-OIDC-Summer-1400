@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using STS.Controllers;
-using STS.SeedData;
+using STS.Extensions;
 
 namespace STS
 {
@@ -27,6 +27,7 @@ namespace STS
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureNonBreakingSameSiteCookies();
             services.AddControllersWithViews();
 
             var builder = services.AddIdentityServer(options =>
@@ -42,15 +43,14 @@ namespace STS
             builder.AddConfigurationStore(options =>
                 {
                     options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
-                        sql => sql.MigrationsAssembly(typeof(Config).Assembly.GetName().Name));
+                        sql => sql.MigrationsAssembly(this.GetType().Assembly.GetName().Name));
                 })
                 .AddOperationalStore(options =>
                 {
                     options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
-                        sql => sql.MigrationsAssembly(typeof(Config).Assembly.GetName().Name));
+                        sql => sql.MigrationsAssembly(this.GetType().Assembly.GetName().Name));
                 });
             builder.AddTestUsers(TestUsers.Users);
-
 
             builder.AddDeveloperSigningCredential();
 
@@ -62,12 +62,13 @@ namespace STS
             if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.InitializeSeedData();
             }
 
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCookiePolicy();
+
             app.UseIdentityServer();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
