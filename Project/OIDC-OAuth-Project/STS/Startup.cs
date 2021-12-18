@@ -5,11 +5,14 @@
 using IdentityServer4;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using STS.Controllers;
+using STS.Data;
+using STS.Data.SeedData;
 using STS.Extensions;
 
 namespace STS
@@ -27,8 +30,16 @@ namespace STS
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetConnectionString("STS_DB");
+
             services.ConfigureNonBreakingSameSiteCookies();
             services.AddControllersWithViews();
+            services.AddDbContext<ApplicationDbContext>(a => a.UseSqlServer(connectionString,
+                sql => sql.MigrationsAssembly(this.GetType().Assembly.GetName().Name)));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
             var builder = services.AddIdentityServer(options =>
             {
@@ -38,8 +49,7 @@ namespace STS
                 options.Events.RaiseSuccessEvents = true;
                 options.EmitStaticAudienceClaim = true;
             });
-            
-            var connectionString = Configuration.GetConnectionString("STS_DB");
+
             builder.AddConfigurationStore(options =>
                 {
                     options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
@@ -50,7 +60,8 @@ namespace STS
                     options.ConfigureDbContext = b => b.UseSqlServer(connectionString,
                         sql => sql.MigrationsAssembly(this.GetType().Assembly.GetName().Name));
                 });
-            builder.AddTestUsers(TestUsers.Users);
+            //builder.AddTestUsers(TestUsers.Users);
+            builder.AddAspNetIdentity<IdentityUser>();
 
             builder.AddDeveloperSigningCredential();
 
@@ -62,6 +73,7 @@ namespace STS
             if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                UsersSeedHelper.InitializeDatabase(app);
             }
 
             app.UseStaticFiles();
