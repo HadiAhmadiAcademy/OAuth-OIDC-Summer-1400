@@ -1,0 +1,11 @@
+[ ] Install "IdentityServer4.AspNetIdentity"
+[ ] Install "Microsoft.AspNetCore.Identity.EntityFrameworkCore"
+[ ] Add "ApplicationDbContext" Class which Inherits from "IdentityDbContext"
+[ ] In Startup.cs
+	[ ] services.AddDbContext....
+	[ ] services.AddIdentity
+	[ ] builder.AddAspNetIdentity
+[ ] dotnet ef migrations add InitialUsers -o Data/Migrations/IdentityServer/AspNetIdentity -c ApplicationDbContext
+[ ] dotnet ef database update -c applicationdbcontext
+[ ] Add a class for generating seed data on application run
+[ ] AccountController -> Use SignInManager & UserManager instead of TestUserStore
